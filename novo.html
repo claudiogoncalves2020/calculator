@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <style>
+        body {
+            background-color: white;
+            transition: background-color 0.5s;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="counter">0</div>
+    <button id="reset">Reset</button>
+
+    <script>
+        let count = 0;
+        const counterElement = document.getElementById("counter");
+        const resetButton = document.getElementById("reset");
+        const bodyElement = document.body;
+
+        // Funktion zum Erhöhen des Zählers und Ändern der Hintergrundfarbe
+        function increaseCounter() {
+            count++;
+            counterElement.textContent = count;
+
+            if (count % 100 === 0) {
+                const randomColor = '#' + Math.floor(Math.random() * 16777215).toString(16);
+                bodyElement.style.backgroundColor = randomColor;
+            }
+        }
+
+        // Event-Listener für Mausklick und Tastendruck
+        bodyElement.addEventListener("click", increaseCounter);
+        document.addEventListener("keydown", function (event) {
+            if (event.key === " " || event.key === "Enter") {
+                increaseCounter();
+            }
+        });
+
+        // Event-Listener für Reset-Button
+        resetButton.addEventListener("click", function () {
+            count = 0;
+            counterElement.textContent = count;
+            bodyElement.style.backgroundColor = "white"; // Zurücksetzen auf weißen Hintergrund
+        });
+    </script>
+</body>
+
+</html>
